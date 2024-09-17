@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import default_abs from '../../public/abs_images/default-abs.png';
 import epigastrium_highlight from '../../public/abs_images/epigastrium-highlight.png';
@@ -15,88 +15,150 @@ import suprapubic_highlight from '../../public/abs_images/suprapubic-highlight.p
 import suprapubic_active from '../../public/abs_images/suprapubic-active.png';
 import umbilicus_highlight from '../../public/abs_images/umbilicus-highlight.png';
 import umbilicus_active from '../../public/abs_images/umbilicus-active.png';
-import AbdominalPoint from './AbdominalPoint';
 
 interface ImageItem {
   id: string;
-  activeSrc: string | StaticImageData;
-  highlightImage: string | StaticImageData;
+  activeSrc: StaticImageData;
+  highlightImage: StaticImageData;
   top: number;
   left: number;
   width: number;
-  height: number
+  height: number;
 }
 
-
 const Abdominal: React.FC = () => {
-  const [selectedAreas,setSelectedAreas]=useState<string[]>([]);
-
-  const onAreaSelected = (id: string) => {
-    console.log(id)
-    console.log("An area has been selected or deselected!");  
-  };
+  const [selectedArea, setSelectedArea] = useState<string | null>(null);
 
   const images: ImageItem[] = [
-    { id: 'epi', highlightImage: epigastrium_highlight , activeSrc: epigastrium_active, top: 10, left: 20, width: 80, height: 80 },
-    { id: 'luq', highlightImage: luq_highlight , activeSrc: luq_active , top: 15, left: 25, width: 90, height: 90},
-    { id: 'ruq', highlightImage: ruq_highlight , activeSrc: ruq_active , top: 12, left: 12, width: 95, height: 95},
-    { id: 'llq', highlightImage: llq_highlight , activeSrc: llq_active , top: 14, left: 15, width: 105, height: 105},
-    { id: 'rlq', highlightImage: rlq_highlight , activeSrc: rlq_active , top: 25, left: 30, width: 120, height: 120},
-    { id: 'sup', highlightImage: suprapubic_highlight , activeSrc: suprapubic_active , top: 10, left: 15, width: 150, height: 150},
-    { id: 'umb', highlightImage: umbilicus_highlight , activeSrc: umbilicus_active , top: 0, left: 0, width: 100, height: 100},
+    // { id: 'epi', highlightImage: epigastrium_highlight, activeSrc: epigastrium_active, top: 0, left: 0, width: 100, height: 100 },
+    // { id: 'luq', highlightImage: luq_highlight, activeSrc: luq_active, top: 0, left: 0, width: 100, height: 100 },
+    // { id: 'ruq', highlightImage: ruq_highlight, activeSrc: ruq_active, top: 0, left: 0, width: 100, height: 100},
+    // { id: 'llq', highlightImage: llq_highlight, activeSrc: llq_active, top: 0, left: 0, width: 100, height: 100 },
+    // { id: 'rlq', highlightImage: rlq_highlight, activeSrc: rlq_active, top: 0, left: 0, width: 100, height: 100 },
+    // { id: 'sup', highlightImage: suprapubic_highlight, activeSrc: suprapubic_active, top: 0, left: 0, width: 100, height: 100 },
+    // { id: 'umb', highlightImage: umbilicus_highlight, activeSrc: umbilicus_active, top: 0, left: 0, width: 100, height: 100 },
   ];
 
+  const handleImageClick = (id: string) => {
+    setSelectedArea(id)
+  };
+  console.log(selectedArea,'select')
+
   return (
-    <div className="flex justify-center items-center w-[-220px] border rounded shadow-md bg-white overflow-hidden p-4">
-    <div className="relative w-full max-w-[500px] md:max-w-[600px]">
-      <Image
-        src={default_abs}
-        alt="Abdominal Pain Locator"
-        layout="responsive"
-        width={500}
-        height={700}
-        className="relative"
-      />
-      {images.map((area) => (
-        <div
-          key={area.id}
-          className="absolute"
-          style={{
-            top: `${area.top}%`,
-            left: `${area.left}%`,
-            width: `${area.width}%`,
-            height: `${area.height}%`,
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            setSelectedAreas((prev) =>
-              prev.includes(area.id)
-                ? prev.filter((id) => id !== area.id)
-                : [...prev, area.id]
-            );
-            onAreaSelected(area.id);
-          }}
-        >
-          {selectedAreas.includes(area.id) && (
-            <Image
-              src={area.highlightImage}
-              alt={'label'}
+    
+    <div className="flex justify-center items-center align-center border rounded shadow-md bg-white p-4">
+        <div className='flex relative items-center max-w-[500px] lg:max-w-[600px] md:max-w-[600px] sm:max-w-[800px] bg-black'>
+             <Image
+              src={default_abs}
+              alt="Abdominal Pain Locator"
               layout="responsive"
               width={500}
               height={700}
-              className="absolute top-0 left-0"
             />
-          )}
+
+              <span 
+                id='umb'
+                className="absolute border rounded-full bg-slate-300 bg-blue h-16 w-16 lg:w-12 lg:h-12 md:w-10 md:h-10 sm:w-5 sm:h-5 " 
+                style={{top: '49.5%',left: '44%'}}
+                onClick={() => handleImageClick('umb')}
+                >
+              </span>
+
+              <span 
+                id='epi' 
+                className='absolute border rounded-full bg-slate-300 bg-blue h-17 w-17 lg:w-14 lg:h-14 md:w-11 md:h-11 sm:w-6 sm:h-6' 
+                style={{top: '36.5%',left: '43%'}}
+                onClick={() => handleImageClick('epi')}
+              />  
+              <span 
+                id='ruq' 
+                className='absolute border rounded-full bg-slate-300 bg-blue h-17 w-17 lg:w-14 lg:h-14 md:w-11 md:h-11 sm:w-6 sm:h-6' 
+                style={{top: '43.5%',left: '34%'}}
+                onClick={() => handleImageClick('ruq')}
+              />  
+              <span 
+                id='rlq' 
+                className='absolute border rounded-full bg-slate-300 bg-blue h-17 w-17 lg:w-14 lg:h-14 md:w-11 md:h-11 sm:w-6 sm:h-6' 
+                style={{top: '54.5%',left: '33%'}}
+                onClick={() => handleImageClick('rlq')}
+              /> 
+              <span 
+                id='suq' 
+                className='absolute border rounded-full bg-slate-300 bg-blue h-17 w-17 lg:w-14 lg:h-14 md:w-11 md:h-11 sm:w-6 sm:h-6' 
+                style={{top: '59.5%',left: '43.5%'}}
+                onClick={() => handleImageClick('suq')}
+              />  
+               <span 
+                id='llq' 
+                className='absolute border rounded-full bg-slate-300 bg-blue h-17 w-17 lg:w-14 lg:h-14 md:w-11 md:h-11 sm:w-6 sm:h-6' 
+                style={{top: '54.5%',left: '53.5%'}}
+                onClick={() => handleImageClick('llq')}
+              /> 
+               <span 
+                id='luq' 
+                className='absolute border rounded-full bg-slate-300 bg-blue h-17 w-17 lg:w-14 lg:h-14 md:w-11 md:h-11 sm:w-6 sm:h-6' 
+                style={{top: '43.5%',left: '53.5%'}}
+                onClick={() => handleImageClick('luq')}
+              />   
+        
         </div>
-      ))}
     </div>
-    </div>
-  ); 
+    // <div className="flex justify-center items-center border rounded shadow-md bg-white overflow-hidden p-4">
+    //   <div className=" w-full max-w-[500px] md:max-w-[600px]">
+    //     <Image
+    //       src={default_abs}
+    //       alt="Abdominal Pain Locator"
+    //       layout="responsive"
+    //       width={500}
+    //       height={700}
+    //       className="relative"
+    //     />
+    //     <div 
+    //       id="epi_img" 
+    //       className="absolute cursor-pointer image-container"
+    //       style={{top: 3, right: 50, width: 500, height: 700, backgroundSize: 'cover'}} 
+          
+    //       >
+    //       <Image 
+    //         src={epigastrium_highlight} 
+    //         className={'absolute top-0 left-0 image-container'}
+    //         alt='abs'
+    //         onClick={() => handleImageClick('epi_img')}
+    //       />
+    //     </div>
+        
+    //   {images.map((area) => (
+    //       <div
+    //         key={area.id}
+    //         className="absolute cursor-pointer"
+    //         style={{
+    //           top: `${area.top}%`,
+    //           left: `${area.left}%`,
+    //           width: `${area.width}%`,
+    //           height: `${area.height}%`,
+    //           backgroundImage: `url(${selectedArea === area.id ? area.highlightImage.src : ''})`,
+    //           backgroundSize: 'cover',
+    //           backgroundPosition: 'center',
+    //         }}
+    //         onClick={() => handleImageClick(area.id)}
+    //       >
+    //         {selectedArea === area.id && (
+    //           <Image
+    //             src={area.activeSrc}
+    //             alt={area.id}
+    //             layout="fill"
+    //             objectFit="cover"
+    //             className="absolute top-0 left-0"
+    //           />
+    //         )}
+    //       </div>
+    //     ))} 
+    //   </div>
+    // </div>
+  );
 };
 
 export default Abdominal;
-
-
 
 
 
