@@ -53,7 +53,7 @@ const AbdominalPoint: React.FC<AbdominalPointProps> = ({ default_abs, imageItem,
         .attr('id', item.id)
         .style('cursor', 'pointer')
         .on('click', (event, d) => {
-      
+          console.log('Image clicked:', d,event.altitudeAngle, event);
         });
         if (item.activeSrc) {
             svg
@@ -65,7 +65,8 @@ const AbdominalPoint: React.FC<AbdominalPointProps> = ({ default_abs, imageItem,
               .attr('height', 600)
               .attr('id', `${item.id}-active`)
               .style('cursor', 'pointer')
-              .style('opacity', 0) 
+              .style('opacity', 0) // Start hidden
+
           }
     });
 

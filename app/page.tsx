@@ -11,12 +11,13 @@ export default function Home () {
      {/* <div>
         <button onClick={() => setActiveComponent('finger')}>Show Finger</button>
       </div>  */}
-    
-        {
+        {/* <Abdominal/> */}
+        <Finger/>
+        {/* {
           activeComponent === 'abdominal' ?
             <Abdominal /> 
             :<Finger/>
-        }
+        } */}
       
     </div>
   );

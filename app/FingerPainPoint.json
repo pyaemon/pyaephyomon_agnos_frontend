@@ -1,0 +1,113 @@
+{ 
+    "fingerPainPoint" : [
+        {
+            "dipPain": [
+                {
+                    "id" : "dip_1",
+                    "top": 40,
+                    "left": 28,
+                    "width": 25,
+                    "height": 25
+                },
+                {
+                    "id" : "dip_2",
+                    "top": 37.5,
+                    "left": 44,
+                    "width": 25,
+                    "height": 25
+                },
+                {
+                    "id" : "dip_3",
+                    "top": 37,
+                    "left": 34,
+                    "width": 25,
+                    "height": 25
+                },
+                {
+                    "id" : "dip_4",
+                    "top": 38,
+                    "left": 33,
+                    "width": 25,
+                    "height": 25
+                },
+                {
+                    "id" : "dip_5",
+                    "top": 38.5,
+                    "left": 43.5,
+                    "width": 25,
+                    "height": 25
+                }
+              
+               
+            ] ,
+            "mcpPain": [
+                {
+                    "id" : "mcp_1",
+                    "top": 39.5,
+                    "left": 43,
+                    "width": 25,
+                    "height": 25
+                },
+                {
+                    "id" : "mcp_2",
+                    "top": 39,
+                    "left": 44,
+                    "width": 25,
+                    "height": 25
+                },
+                {
+                    "id" : "mcp_3",
+                    "top": 40,
+                    "left": 42,
+                    "width": 25,
+                    "height": 25
+                },
+                {
+                    "id" : "mcp_4",
+                    "top": 40.5,
+                    "left": 41,
+                    "width": 25,
+                    "height": 25
+                },
+                {
+                    "id" : "mcp_5",
+                    "top": 41.5,
+                    "left": 40,
+                    "width": 25,
+                    "height": 25
+                } 
+            ],
+            "pipPain": [
+                {
+                    "id" : "pip_1",
+                    "top": 42,
+                    "left": 43,
+                    "width": 25,
+                    "height": 25
+                },
+                {
+                    "id" : "pip_2",
+                    "top": 42.5,
+                    "left": 44,
+                    "width": 25,
+                    "height": 25
+                },
+                {
+                    "id" : "pip_3",
+                    "top": 43,
+                    "left": 44.5,
+                    "width": 25,
+                    "height": 25
+                },
+                {
+                    "id" : "pip_4",
+                    "top": 43.5,
+                    "left": 45,
+                    "width": 25,
+                    "height": 25
+                } 
+            ] 
+        }
+    ]
+ 
+}

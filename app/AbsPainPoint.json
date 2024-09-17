@@ -1,0 +1,55 @@
+{
+    "AbsPainPoints": [
+        {
+            "id" : "epi",
+            "top": 36.5,
+            "left": 43,
+            "width": 50,
+            "height": 50
+        },
+        {
+            "id" : "umb",
+            "top": 49.5,
+            "left": 44,
+            "width": 40,
+            "height": 40
+        },
+        {
+            "id" : "ruq",
+            "top": 43.5,
+            "left": 34,
+            "width": 45,
+            "height": 45
+        },
+        {
+            "id" : "rlq",
+            "top": 54.5,
+            "left": 33,
+            "width": 45,
+            "height": 45
+        },
+        {
+            "id" : "sup",
+            "top": 59.5,
+            "left": 43.5,
+            "width": 45,
+            "height": 45
+        },
+        {
+            "id" : "llq",
+            "top": 54.5,
+            "left": 53.5,
+            "width": 45,
+            "height": 45
+        },
+        {
+            "id" : "luq",
+            "top": 43.5,
+            "left": 53.5,
+            "width": 45,
+            "height": 45
+        }
+       
+    ] 
+}
+
