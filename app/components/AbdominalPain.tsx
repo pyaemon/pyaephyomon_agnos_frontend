@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import default_abs from '../../public/abs_images/default-abs.png';
 import AbsPainPoints  from '../AbsPainPoint.json'
 
 interface ImageItem {
   id: string;
   active: {
-    activeSrc: string | undefined;
+    activeSrc: string | StaticImageData;
     top: number;
     left: number,
   }
   highlight: {
-    highlightSrc: string | undefined;
+    highlightSrc: string | StaticImageData;
     top: number;
     left: number,
   }
@@ -69,7 +69,7 @@ const Abdominal: React.FC= () => {
         
         setSelectedData(Data);
     
-    }, [selectedArea]);
+    }, [selectedArea,images]);
 
   return (
     <>
@@ -117,10 +117,12 @@ const Abdominal: React.FC= () => {
                 >
                     {
                     selectedData.length < 7 && 
-                    <img
+                    <Image
                         key={area.id}
                         src={area.active.activeSrc}
                         alt={area.id}
+                        width={500}
+                        height={700}
                         style={{
                         position: 'absolute', 
                         top: `${area.active.top}%`, 

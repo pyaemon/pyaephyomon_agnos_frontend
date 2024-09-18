@@ -1,16 +1,16 @@
 import React, { useState, useEffect} from 'react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import default_finger from '../../public/finger_images/default-finger.png';
 import  fingerPainPoint from '../FingerPainPoint.json'
 
 interface ImageItem {
   id: string;
   active: {
-    activeSrc: string | undefined;
+    activeSrc: string | StaticImageData;
     top: number;
     left: number,
   }
-  highlightImage: string | undefined;
+  highlightImage: string | StaticImageData;
 }
 
 
@@ -46,7 +46,7 @@ const FingerPain: React.FC  = () => {
         ? images.filter((data) => selectedArea.map(d => d).includes(data.id)) 
         : [];
         setSelectedData(Data)
-    },[selectedArea])
+    },[selectedArea,images])
 
   return (
     <>
@@ -132,11 +132,13 @@ const FingerPain: React.FC  = () => {
                     backgroundPosition: 'center',
                     }}    
                 >
-                    <img
-                    key={area.id}
-                    src={area.active.activeSrc}
-                    alt={area.id}
-                    style={{position: 'absolute', top: `${area.active.top}%`, left: `${area.active.left}%`}}
+                    <Image
+                        key={area.id}
+                        src={area.active.activeSrc}
+                        alt={area.id}
+                        width={500}
+                        height={700}
+                        style={{position: 'absolute', top: `${area.active.top}%`, left: `${area.active.left}%`}}
                     />    
                 </div>
                 )) 
