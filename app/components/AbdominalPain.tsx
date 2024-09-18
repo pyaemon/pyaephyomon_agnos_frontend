@@ -76,6 +76,7 @@ const Abdominal: React.FC= () => {
     <>
         <div className='flex relative w-full items-center max-w-[500px] min-w-[400px] border shadow-md'>
             <Image
+                key={'default'}
                 src={default_abs}
                 alt="Abdominal Pain Locator"
                 layout="responsive"
@@ -84,10 +85,9 @@ const Abdominal: React.FC= () => {
                 height={700}
             />
             {
-                AbsPainPoints?.map((k: any,item: any)=>
+                AbsPainPoints?.map((item: any)=>
                 <>
                     <span 
-                    key={item.id}
                     id={item.id}
                     className="w-full absolute rounded-full h-16 lg:w-12 lg:h-12 md:w-10 md:h-10 sm:w-5 sm:h-5 xs-w-h xs:h-5" 
                     style={{
