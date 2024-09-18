@@ -61,6 +61,7 @@ const Abdominal: React.FC= () => {
         setSelectedArea([...selectedArea, id]);
         }
     };
+    
 
     useEffect(() => {
         const Data = selectedArea.length > 0 
@@ -83,9 +84,10 @@ const Abdominal: React.FC= () => {
                 height={700}
             />
             {
-                AbsPainPoints?.map((item: any)=>
+                AbsPainPoints?.map((k: any,item: any)=>
                 <>
                     <span 
+                    key={item.id}
                     id={item.id}
                     className="w-full absolute rounded-full h-16 lg:w-12 lg:h-12 md:w-10 md:h-10 sm:w-5 sm:h-5 xs-w-h xs:h-5" 
                     style={{

@@ -46,7 +46,7 @@ const FingerPain: React.FC  = () => {
         ? images.filter((data) => selectedArea.map(d => d).includes(data.id)) 
         : [];
         setSelectedData(Data)
-    },[selectedArea])
+    },[selectedArea,images])
 
   return (
     <>
@@ -63,6 +63,7 @@ const FingerPain: React.FC  = () => {
                 fingerPainPoint?.map((item: any)=>item.dipPain.map((d: any)=>
                 <>
                     <span 
+                    key={item.id}
                     id={d.id}
                     className="absolute rounded-full h-10 w-10 lg:w-9 lg:h-9 md:w-8 md:h-8 sm:w-5 sm:h-5 xs-w-h xs:h-5" 
                     style={{
@@ -83,6 +84,7 @@ const FingerPain: React.FC  = () => {
                 fingerPainPoint?.map((item: any)=>item.pipPain.map((d: any)=>
                 <>
                     <span 
+                    key={item.id}
                     id={d.id}
                     className="absolute rounded-full bg-blue h-10 w-10 lg:w-9 lg:h-9 md:w-8 md:h-8 sm:w-5 sm:h-5 " 
                     style={{
@@ -103,6 +105,7 @@ const FingerPain: React.FC  = () => {
                 fingerPainPoint?.map((item: any)=>item.mcpPain.map((d: any)=>
                 <>
                 <span 
+                    key={item.id}
                     id={d.id}
                     className="absolute rounded-full bg-blue h-10 w-10 lg:w-9 lg:h-9 md:w-8 md:h-8 sm:w-5 sm:h-5 " 
                     style={{
