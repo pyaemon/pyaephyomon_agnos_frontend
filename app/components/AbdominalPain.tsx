@@ -69,7 +69,7 @@ const Abdominal: React.FC= () => {
         
         setSelectedData(Data);
     
-    }, [selectedArea,images]);
+    }, [selectedArea]);
 
   return (
     <>

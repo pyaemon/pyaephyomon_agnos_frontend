@@ -46,7 +46,7 @@ const FingerPain: React.FC  = () => {
         ? images.filter((data) => selectedArea.map(d => d).includes(data.id)) 
         : [];
         setSelectedData(Data)
-    },[selectedArea,images])
+    },[selectedArea])
 
   return (
     <>
