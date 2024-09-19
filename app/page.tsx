@@ -10,9 +10,9 @@ export default function Home() {
   
 
   return (
-    <div className="flex flex-col w-full h-screen justify-center items-center  ">
+    <div className="flex flex-col w-full h-screen justify-center items-center">
       {currentPage === 1 ? (
-        <div className=" w-full rounded-lg shadow-lg p-5 max-w-md">
+        <div className="w-full justify-center items-center rounded-lg p-5 max-w-md ">
             <h3 className="m-2 text-center text-lg text-gray-500 font-bold">
                 Where do you have stomach pain?
             </h3>
@@ -21,7 +21,7 @@ export default function Home() {
       )
       :
       (
-        <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+        <div className="w-full justify-center items-center rounded-lg p-5 max-w-md ">
           <h2 className="text-xl font-bold mb-4 text-gray-600 text-center">
               Where Do you have the finger pain?
           </h2>
@@ -30,7 +30,7 @@ export default function Home() {
       )
     }
 
-      <div className="mt-6 flex justify-center max-w-[450px] min-w-[450px]">
+      <div className="flex mt-4 w-full justify-center">
         {currentPage ===1  ? 
           <Button
             name="Next"
@@ -39,9 +39,8 @@ export default function Home() {
           />
           :
           <Button
-          name="Previous"
-          onClick={()=>setCurrentPage(prev=>prev-1)}
-         
+            name="Previous"
+            onClick={()=>setCurrentPage(prev=>prev-1)}
         />
         }
       </div>

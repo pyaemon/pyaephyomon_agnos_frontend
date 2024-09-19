@@ -17,43 +17,43 @@ interface ImageItem {
   }
 
 }
-
+const images: ImageItem[] = [
+  { id: 'epi', 
+    highlight: { highlightSrc: '/abs_images/epigastrium-highlight.png', top : 0, left: 0},
+    active: { activeSrc: '/abs_images/epigastrium-active.png', top : 0, left: 2}
+  },
+  { id: 'luq', 
+    highlight: { highlightSrc: '/abs_images/luq-highlight.png', top : 0, left: 0},
+    active: { activeSrc: '/abs_images/luq-active.png', top: 0 , left: 0} 
+  },
+  { id: 'ruq', 
+    highlight: { highlightSrc: '/abs_images/ruq-highlight.png', top : 0, left: 0},
+    active:{ activeSrc: '/abs_images/ruq-active.png', top: 8, left: 0}
+  },
+  { id: 'llq', 
+    highlight: { highlightSrc: '/abs_images/llq-highlight.png', top : 0, left: 0},
+    active: { activeSrc: '/abs_images/llq-active.png', top: 0, left: 0} 
+  },
+  { id: 'rlq', 
+    highlight: { highlightSrc: '/abs_images/rlq-highlight.png', top : 0, left: 0},
+    active:{ activeSrc: '/abs_images/rlq-active.png', top: -8, left: -4} 
+  },
+  { id: 'sup', 
+    highlight: { highlightSrc: '/abs_images/suprapubic-highlight.png', top : 0, left: 0},
+    active: {activeSrc: '/abs_images/suprapubic-active.png',top: 0 ,left: 0} 
+  },
+  { id: 'umb', 
+    highlight: { highlightSrc: '/abs_images/umbilicus-highlight.png', top : 0, left: 0},
+    active: {activeSrc: '/abs_images/umbilicus-active.png', top: 0, left: 0} 
+  },
+  ];
+  
 const Abdominal: React.FC= () => {
 
   const [selectedArea, setSelectedArea] = useState<string[]>([]);
   const [selectedData,setSelectedData]  = useState<ImageItem[]>([])
   
-  const images: ImageItem[] = [
-    { id: 'epi', 
-      highlight: { highlightSrc: '/abs_images/epigastrium-highlight.png', top : 0, left: 0},
-      active: { activeSrc: '/abs_images/epigastrium-active.png', top : 0, left: 2}
-    },
-    { id: 'luq', 
-      highlight: { highlightSrc: '/abs_images/luq-highlight.png', top : 0, left: 0},
-      active: { activeSrc: '/abs_images/luq-active.png', top: 0 , left: 0} 
-    },
-    { id: 'ruq', 
-      highlight: { highlightSrc: '/abs_images/ruq-highlight.png', top : 0, left: 0},
-      active:{ activeSrc: '/abs_images/ruq-active.png', top: 8, left: 0}
-    },
-    { id: 'llq', 
-      highlight: { highlightSrc: '/abs_images/llq-highlight.png', top : 0, left: 0},
-      active: { activeSrc: '/abs_images/llq-active.png', top: 0, left: 0} 
-    },
-    { id: 'rlq', 
-      highlight: { highlightSrc: '/abs_images/rlq-highlight.png', top : 0, left: 0},
-      active:{ activeSrc: '/abs_images/rlq-active.png', top: -8, left: -4} 
-    },
-    { id: 'sup', 
-      highlight: { highlightSrc: '/abs_images/suprapubic-highlight.png', top : 0, left: 0},
-      active: {activeSrc: '/abs_images/suprapubic-active.png',top: 0 ,left: 0} 
-    },
-    { id: 'umb', 
-      highlight: { highlightSrc: '/abs_images/umbilicus-highlight.png', top : 0, left: 0},
-      active: {activeSrc: '/abs_images/umbilicus-active.png', top: 0, left: 0} 
-    },
-    ];
-
+ 
     const handleImageClick = (id: string) => {
         if (selectedArea.includes(id)) {
         setSelectedArea(selectedArea.filter((imageId) => imageId !== id));
@@ -62,19 +62,17 @@ const Abdominal: React.FC= () => {
         }
     };
     
-
-    useEffect(() => {
-        const Data = selectedArea.length > 0 
-        ? images.filter((data) => selectedArea.includes(data.id)) 
+    useEffect(()=>{
+        const Data = selectedArea?.length > 0 
+        ? images.filter((data) => selectedArea.map(d => d).includes(data.id)) 
         : [];
-        
-        setSelectedData(Data);
+        setSelectedData(Data)
+      
+    },[selectedArea])
     
-    }, [selectedArea]);
-
   return (
-    <>
-        <div className='flex relative w-full items-center max-w-[500px] min-w-[400px] border shadow-md'>
+    <div className='flex w-full justify-center items-center rounded-lg p-5 '>
+        <div className='relative max-w-[500px] max-w-md shadow-lg'>
             <Image
                 key={'default'}
                 src={default_abs}
@@ -82,12 +80,13 @@ const Abdominal: React.FC= () => {
                 layout="responsive"
                 style={{zIndex: 0}}
                 width={500}
-                height={700}
+                height={600}
             />
             {
-                AbsPainPoints?.map((item: any)=>
+                AbsPainPoints?.map((item)=>
                 <>
                     <span 
+                    key={item.id}
                     id={item.id}
                     className="w-full absolute rounded-full h-16 lg:w-12 lg:h-12 md:w-10 md:h-10 sm:w-5 sm:h-5 xs-w-h xs:h-5" 
                     style={{
@@ -103,12 +102,12 @@ const Abdominal: React.FC= () => {
                     </span>
                 </>
                 )
-            },
+            }
             {
                 selectedData.map((area) => (
                 <div
                     key={area.id}
-                    className="w-full h-full absolute cursor-pointer max-w-[500px] min-w-[400px]"
+                    className="w-full h-full absolute cursor-pointer max-w-[500px]"
                     style={{
                         backgroundImage: `url(${area.highlight.highlightSrc})`,
                         top: `${area.highlight.top}%`, 
@@ -124,7 +123,7 @@ const Abdominal: React.FC= () => {
                         src={area.active.activeSrc}
                         alt={area.id}
                         width={500}
-                        height={700}
+                        height={600}
                         style={{
                         position: 'absolute', 
                         top: `${area.active.top}%`, 
@@ -137,7 +136,7 @@ const Abdominal: React.FC= () => {
             } 
 
         </div> 
-    </> 
+    </div> 
   )
 };
 
