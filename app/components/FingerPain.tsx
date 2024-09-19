@@ -148,14 +148,18 @@ const FingerPain: React.FC  = () => {
                     backgroundPosition: 'center',
                     }}    
                 >
+                  {
+                    selectedData.length < 3 &&
                     <Image
-                    key={area.id}
-                    src={area.active.activeSrc}
-                    alt={area.id}
-                    width={500}
-                    height={600}
-                    style={{position: 'absolute', top: `${area.active.top}%`, left: `${area.active.left}%`}}
-                    />    
+                      key={area.id}
+                      src={area.active.activeSrc}
+                      alt={area.id}
+                      width={500}
+                      height={600}
+                      style={{position: 'absolute', top: `${area.active.top}%`, left: `${area.active.left}%`}}
+                    />   
+                  }
+                    
                 </div>
                 )) 
             } 
